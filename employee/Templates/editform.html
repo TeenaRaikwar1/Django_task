@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Update Employee Data</h1>
+
+<center>
+
+    <h2 style="color: green;">{{ msg }}</h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        Name:
+        <input type="text" name="nm" value="{{ emp.name }}">
+        <br><br>
+
+        Email:
+        <input type="email" name="em" value="{{ emp.email }}">
+        <br><br>
+
+        Age:
+        <input type="number" name="ag" value="{{ emp.age }}">
+        <br><br>
+
+        Salary:
+        <input type="number" name="sal" value="{{ emp.salary }}">
+        <br><br>
+
+        Department:
+
+        <select name="dept">
+
+            {% for i in dep_data %}
+
+                <option value="{{ i.id }}"
+                    {% if emp.department_id == i.id %}selected{% endif %}>
+
+                    {{ i.name }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        Company:
+
+        {% for i in company_data %}
+
+            {{ i.name }}
+
+            <input
+                type="radio"
+                name="com"
+                value="{{ i.id }}"
+                {% if emp.Company_id == i.id %}checked{% endif %}
+            >
+
+        {% endfor %}
+
+        <br><br>
+
+        Address:
+        <input type="text" name="add" value="{{ emp.address }}">
+
+        <br><br>
+
+        <input type="submit" value="Edit">
+
+    </form>
+
+</center>
+
+{% endblock %}

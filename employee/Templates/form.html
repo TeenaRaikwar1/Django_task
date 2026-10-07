@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Add Employee Data</h1>
+
+<center>
+
+    <h2 style="color: green;">{{msg}}</h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        Name:
+        <input type="text" name="nm">
+        <br><br>
+
+        Email:
+        <input type="email" name="em">
+        <br><br>
+
+        Age:
+        <input type="number" name="ag">
+        <br><br>
+
+        Salary:
+        <input type="number" name="sal">
+        <br><br>
+
+        Department:
+
+        <select name="dept">
+
+            {% for i in dep_data %}
+
+                <option value="{{i.id}}">
+                    {{i.name}}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+
+        Company:
+
+        {% for i in company_data %}
+
+            {{i.name}}
+
+            <input
+                type="radio"
+                name="com"
+                value="{{i.id}}"
+            >
+
+        {% endfor %}
+
+        <br><br>
+
+
+        Address:
+        <input type="text" name="add">
+
+        <br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+</center>
+
+{% endblock %}
+

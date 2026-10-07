@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1>Employee Details</h1>
+{{employdata.name}}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">EMP ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Age</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Department</th>
+      <th scope="col">Company</th>
+      <th scope="col">Address</th>
+      <th scope="col"><a>update</a></th>
+      <th scope="col"><a>delete</a></th>
+    </tr>
+  </thead>
+  {%for i in employdata%}
+  <tbody>
+    
+    <tr>
+      <th scope="row">{{i.id}}</th>
+      <td>{{i.name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.age}}</td>
+      <td>{{i.salary}}</td>
+      <td>{{i.department}}</td>
+      <td>{{i.Company}}</td>
+      <td>{{i.address}}</td>
+
+      <td><a href= "{%url 'editdata'  i.id%}" type="button" class="btn btn-success">update</a></td>
+      <td><a href = "{%url 'deletedata'  i.id%}" type="button" class="btn btn-danger">delete</a></td>
+    </tr>
+  
+  </tbody>
+   {%endfor%}
+</table>
+{%endblock%}
